@@ -299,19 +299,16 @@ The tool provides the following metrics:
    - Records processed per second
    - Average decryption time per record
 
-2. **Cache Performance**
-   - Cache hit rate
-   - Cache miss rate
-
-3. **Resource Usage**
+2. **Resource Usage**
    - Total processing time
-   - Memory usage
-   - CPU usage (when profiling enabled)
+   - CPU usage (when profiling enabled with `-cpu-profile` flag)
 
-4. **Batch Statistics**
-   - Total batches processed
-   - Average batch processing time
-   - Batch success rate
+3. **Progress Information**
+   - Total records processed
+   - Current processing speed
+   - Estimated time remaining (when total record count is available)
+
+Note: Additional metrics like cache performance, memory usage, and detailed batch statistics are planned for future releases.
 
 ## Contributing
 
