@@ -110,13 +110,13 @@ const (
 func setDefaultConfigValues(cfg *config.Config) {
 	// Set optimal number of workers if not specified
 	if cfg.NumWorkers <= 0 {
-		cpuCount := runtime.NumCPU()
-		// Use 75% of available CPUs for optimal performance
-		cfg.NumWorkers = int(float64(cpuCount) * 0.75)
-		if cfg.NumWorkers < 2 {
-			cfg.NumWorkers = 2 // Minimum of 2 workers
+		// Calculate optimal worker count based on available CPUs
+		numWorkers := runtime.NumCPU() * 2
+		if numWorkers < 2 {
+			numWorkers = 2 // Ensure at least 2 workers
 		}
-		logger.Info("Setting optimal worker count to %d (based on %d CPUs)", cfg.NumWorkers, cpuCount)
+		cfg.NumWorkers = numWorkers
+		logger.Info("Setting optimal worker count to %d (based on %d CPUs)", cfg.NumWorkers, runtime.NumCPU())
 	}
 
 	// Set optimal batch size if not specified

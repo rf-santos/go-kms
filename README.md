@@ -228,9 +228,9 @@ log_level: "info"  # debug, info, error
 ## Performance Tuning
 
 ### Worker Count
-- Default: 75% of available CPUs
+- Default: 2 * available CPUs (optimized for network IO)
 - Adjust with `-workers` flag
-- Recommended: 2-8 workers for most workloads
+- Recommended: 2-16 workers for most workloads
 - Higher values may increase contention
 
 ### Batch Size
