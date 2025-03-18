@@ -1,0 +1,60 @@
+# GCP KMS Configuration (Required)
+project_id: "your-project-id"
+location_id: "europe-west1"
+keyring_id: "your-keyring-id"
+key_id: "your-key-id"
+
+# Processing Configuration
+mode: "parallel"  # Options: parallel, bulk
+workers: 8
+batch_size: 1000
+cache_ttl: 300
+
+# Logging Configuration
+log_level: "info"  # Options: debug, info, error
+
+# Data Source Configuration
+source: "gcs"  # Options: csv, mongo, postgres, gcs
+
+# Field Configuration
+id_field: "hash"
+encrypted_field: "encrypted"
+plaintext_field: "plaintext"
+
+# Filter Configuration (Optional)
+filter: "status = 'active'"
+
+# GCS Configuration (Required if using GCS)
+gcs_bucket: "go-kms-test"
+gcs_input: "encrypted.csv"
+gcs_credentials: "path/to/credentials.json"  # Optional
+
+# MongoDB Configuration (Required if using MongoDB)
+mongo_uri: "mongodb://localhost:27017"
+mongo_db: "your-database"
+mongo_coll: "your-collection"
+
+# PostgreSQL Configuration (Required if using PostgreSQL)
+postgres_uri: "postgresql://user:password@localhost:5432/your-database"
+postgres_table: "your-table"
+
+# Output Configuration
+output_type: "mongo"  # Options: csv, mongo, postgres, gcs
+
+# Output File Configuration (Required if output_type is csv)
+output_file: "decrypted.csv"
+
+# Output MongoDB Configuration (Required if output_type is mongo)
+out_mongo_uri: "mongodb://localhost:27017"
+out_mongo_db: "your-database"
+out_mongo_coll: "your-collection"
+
+# Output PostgreSQL Configuration (Required if output_type is postgres)
+out_postgres_uri: "postgresql://user:password@localhost:5432/your-database"
+out_postgres_table: "your-table"
+
+# Output GCS Configuration (Required if output_type is gcs)
+gcs_output: "decrypted.csv"
+
+# Output Behavior
+update_existing: false  # Whether to update existing records or insert new ones 

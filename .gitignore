@@ -1,0 +1,15 @@
+# Build files
+*.exe
+*.o
+*.a
+*.so
+
+# Data files (if not needed in container)
+*.csv
+examples/
+
+# Development files
+cpu.prof
+
+# Local configs
+**config.yml

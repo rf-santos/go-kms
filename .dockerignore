@@ -1,0 +1,22 @@
+# Git files
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Build files
+*.exe
+*.o
+*.a
+*.so
+
+# Data files (if not needed in container)
+*.csv
+examples/
+
+# Development files
+*.md
+LICENSE
+cpu.prof
