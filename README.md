@@ -225,6 +225,73 @@ log_level: "info"  # debug, info, error
 ./go-kms -config config.yml
 ```
 
+## Docker Usage
+
+The `go-kms` application is also available as a Docker image, which can simplify deployment and execution. You can use either the image hosted on GitHub Container Registry (`ghcr.io/rf-santos/go-kms`) or Docker Hub (`rfcdsantos/go-kms`).
+
+### Running with Docker
+
+To run `go-kms` in a Docker container, you need to pass the required command-line flags as arguments to the `docker run` command.
+
+#### Example: CSV to CSV Processing using Docker
+
+**GitHub Container Registry (ghcr.io)**
+
+```bash
+docker run ghcr.io/rf-santos/go-kms \
+  -source csv \
+  -input input.csv \
+  -output-type csv \
+  -output output.csv \
+  -project my-project \
+  -location us-central1 \
+  -keyring my-keyring \
+  -key my-key \
+  -id-field id \
+  -enc-field encrypted_data \
+  -pt-field plaintext_data
+```
+
+**Docker Hub (rfcdsantos/go-kms)**
+
+```bash
+docker run rfcdsantos/go-kms \
+  -source csv \
+  -input input.csv \
+  -output-type csv \
+  -output output.csv \
+  -project my-project \
+  -location us-central1 \
+  -keyring my-keyring \
+  -key my-key \
+  -id-field id \
+  -enc-field encrypted_data \
+  -pt-field plaintext_data
+```
+
+**Note:** When using Docker, ensure that any files referenced by the flags (e.g., `-input input.csv`, `-output output.csv`, `-gcs-creds path/to/credentials.json`, `-config config.yml`) are accessible within the Docker container. You might need to mount volumes to make local files available to the container.
+
+#### Example with Volume Mount
+
+If your input CSV file is in the current directory, you can mount the current directory to `/app` inside the container and then reference the input file as `/app/input.csv`.
+
+```bash
+docker run -v $(pwd):/app ghcr.io/rf-santos/go-kms \
+  -source csv \
+  -input /app/input.csv \
+  -output-type csv \
+  -output /app/output.csv \
+  -project my-project \
+  -location us-central1 \
+  -keyring my-keyring \
+  -key my-key \
+  -id-field id \
+  -enc-field encrypted_data \
+  -pt-field plaintext_data
+```
+
+This example mounts your current working directory to `/app` inside the Docker container. Adjust the volume mount and file paths as needed for your specific use case.
+
 ## Performance Tuning
 
 ### Worker Count
